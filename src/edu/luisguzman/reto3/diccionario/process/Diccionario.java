@@ -1,7 +1,5 @@
 package edu.luisguzman.reto3.diccionario.process;
 
-import edu.luisguzman.reto3.ui.CLI;
-
 import java.util.Arrays;
 
 public class Diccionario {
@@ -9,28 +7,32 @@ public class Diccionario {
     private String[] significado;
 
     public Diccionario(String[] palabras, String[] significados) {
-        this palabras = palabras;
-        this significados = significados;
+        this.palabras = palabras;
+        this.significado = significados;
     }
 
-    public String buscarsignificados(String palabra){
-        return getDescription(getIndice(palabra));
+    public String buscarSignificados(String palabra){
+        return getDescription(buscarIndice(palabra));
     }
-    private int buscarIndice (String palabra){
+
+    private int buscarIndice(String palabra){
         int index = 0;
         boolean found = false;
         while(index < palabras.length && !found ){
             if(palabra.equalsIgnoreCase(palabras[index])) return index;
-            index ++;
+            index++;
         }
         return -1;
     }
-    public String getDescription (int index){
-        if(index == 1) return "La palabra que busca no esta en el diccionario";
+
+    public String getDescription(int index){
+        if(index == -1) return "La palabra que busca no está en el diccionario";
         return significado[index];
     }
 
     public void printList(){
-        Arrays.stream(palabras).forEach(System.out::println);
+        for (int i = 0; i < palabras.length; i++) {
+            System.out.println(palabras[i] + ": " + significado[i]);
+        }
     }
 }

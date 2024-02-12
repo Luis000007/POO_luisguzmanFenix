@@ -1,8 +1,8 @@
 package edu.luisguzman.reto3.diccionario.ui;
 
-import edu.luisguzman.reto3.process.Diccionario;
+import edu.luisguzman.reto3.diccionario.process.Diccionario;
+import java.util.Scanner;
 
-import java.until.Scanner
 public class CLI {
     public static void showMenu(Diccionario diccionario){
         Scanner scanner = new Scanner(System.in);
@@ -12,18 +12,27 @@ public class CLI {
             System.out.println("1. Mostrar palabras del diccionario");
             System.out.println("2. Buscar palabra del diccionario");
             System.out.println("3. Detalle del diccionario");
-            System.out.println("4. Salir del progrma");
+            System.out.println("4. Salir del programa");
             System.out.println("**********************");
             String opcion = scanner.nextLine();
             switch (opcion) {
-                case "a":
+                case "1":
                     diccionario.printList();
                     break;
-                case "b":
-                    System.out.println("¿Que palabra quiere conocer");
+                case "2":
+                    System.out.println("¿Qué palabra quiere conocer?");
                     String palabra = scanner.nextLine();
-                    String significado = diccionario.buscarSignificado(palabra);
-                    System.out.print( % s: );
+                    String significado = diccionario.buscarSignificados(palabra);
+                    System.out.printf("%s: %s%n", palabra, significado);
+                    break;
+                case "3":
+                    // Detalle del diccionario
+                    break;
+                case "4":
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Opción no válida");
             }
         }
     }
